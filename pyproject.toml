@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "textcanvas"
+name = "stylizedterminal"
 version = "0.1.0"
 description = "A starter template for a Python library"
 readme = "README.md"

@@ -1,10 +1,10 @@
-# textcanvas
+# stylizedterminal
 
 A simple starter template for a Python library.
 
 ## Structure
 
-- `src/textcanvas/` contains the package source code
+- `src/stylizedterminal/` contains the package source code
 - `tests/` contains basic tests
 - `pyproject.toml` defines packaging and dependencies
 
