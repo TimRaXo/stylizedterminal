@@ -29,23 +29,23 @@ TERMINAL_CODES = {
     "d": "B",
 }
 
-class CanvasStr(str):
+class StylizedStr(str):
     def color(self, color='reset'):
         color_code = COLORS_TEXT.get(color.lower(), COLORS_TEXT['reset'])
-        return CanvasStr(f"{color_code}{self}{COLORS_TEXT['reset']}")
+        return StylizedStr(f"{color_code}{self}{COLORS_TEXT['reset']}")
 
     def background_color(self, color="reset"):
         color_code = COLORS_BACKGROUND.get(color.lower(), COLORS_BACKGROUND["reset"])
-        return CanvasStr(f"{color_code}{self}{COLORS_BACKGROUND['reset']}")
+        return StylizedStr(f"{color_code}{self}{COLORS_BACKGROUND['reset']}")
     def move_cursor(self, direction, steps):
         direction_code = TERMINAL_CODES.get(direction.lower())
         if direction_code is None:
             raise ValueError(f"Invalid direction: {direction}. Use 'r', 'l', 'u', or 'd'.")
-        return CanvasStr(f"\033[{steps}{direction_code}{self}")
+        return StylizedStr(f"\033[{steps}{direction_code}{self}")
 
 
 def clear_screen():
     print("\033[2J\033[H", end="")
 
 
-print(CanvasStr("Hello, World!").color("red").move_cursor("r", 5))
+
