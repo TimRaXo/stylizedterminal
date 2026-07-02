@@ -6,15 +6,21 @@ stylizedterminal is a lightweight Python package for adding terminal styling to 
 
 Install the package from PyPI:
 
+### Linux/Macos
+
 ```bash
-pip install stylizedterminal
+python3 -m pip install stylizedterminal
+```
+
+### Windows
+```cmd
+py -m pip install stylizedterminal
 ```
 
 ### Importing the package
 
 ```python
 import stylizedterminal
-from stylizedterminal import StylizedStr
 ```
 
 ## Usage
