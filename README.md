@@ -50,7 +50,7 @@ print(StylizedStr("Hello").strikethrough())
 ### Cursor movement and screen clearing
 
 ```python
-from stylizedterminal import StylizedStr, move_cursor, clear_screen
+from stylizedterminal import StylizedStr, clear_screen
 
 print(StylizedStr("Hello").move_cursor(r, 5)) # The first parameter is the direction, the second parameter is by how much.
 clear_screen()
