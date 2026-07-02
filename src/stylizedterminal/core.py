@@ -96,7 +96,7 @@ ASCII_FONT = {
     "~": [" # # ", "# #  ", "     ", "     ", "     "],
 }
 
-COLORS_TEXT = {               # ANSI escape codes for text colors
+COLORS_TEXT = {
     "black": "\033[30m",
     "red": "\033[31m",
     "green": "\033[32m",
@@ -108,7 +108,7 @@ COLORS_TEXT = {               # ANSI escape codes for text colors
     "reset": "\033[0m",
 }
 
-COLORS_BACKGROUND = {        # ANSI escape codes for background colors
+COLORS_BACKGROUND = {
     "black": "\033[40m",
     "red": "\033[41m",
     "green": "\033[42m",
@@ -120,27 +120,30 @@ COLORS_BACKGROUND = {        # ANSI escape codes for background colors
     "reset": "\033[0m",
 }
 
-TERMINAL_CODES = {            # Direction codes for moving the cursor
+TERMINAL_CODES = {
     "r": "C",
     "l": "D",
     "u": "A",
     "d": "B",
 }
 
-class StylizedStr(str):                                                                # A subclass of str that adds methods for styling text in the terminal
-    def color(self, color='reset'):                                                    # Method to wrap the string in ANSI escape codes for text color                                
-        color_code = COLORS_TEXT.get(color.lower(), COLORS_TEXT['reset'])
+
+class StylizedStr(str):
+    def color(self, color="reset"):
+        color_code = COLORS_TEXT.get(color.lower(), COLORS_TEXT["reset"])
         return StylizedStr(f"{color_code}{self}{COLORS_TEXT['reset']}")
 
-    def background_color(self, color="reset"):                                         # Method to wrap the string in ANSI escape codes for background color
+    def background_color(self, color="reset"):
         color_code = COLORS_BACKGROUND.get(color.lower(), COLORS_BACKGROUND["reset"])
         return StylizedStr(f"{color_code}{self}{COLORS_BACKGROUND['reset']}")
-    def move_cursor(self, direction, steps):                                           # Method to move the cursor in the terminal in a specified direction by a specified number of steps
+
+    def move_cursor(self, direction, steps):
         direction_code = TERMINAL_CODES.get(direction.lower())
         if direction_code is None:
             raise ValueError(f"Invalid direction: {direction}. Use 'r', 'l', 'u', or 'd'.")
         return StylizedStr(f"\033[{steps}{direction_code}{self}")
-    def ascii_art(self):                                                                # Method to convert the string into ASCII art using the defined ASCII_FONT
+
+    def ascii_art(self):
         lines = [""] * 5
         for char in self.upper():
             if char in ASCII_FONT:
@@ -150,15 +153,29 @@ class StylizedStr(str):                                                         
                 for i in range(5):
                     lines[i] += "     " + "  "
         return StylizedStr("\n".join(lines))
-    def bold(self):                                                                    # Method to make the string bold in the terminal
+
+    def bold(self):
         return StylizedStr(f"\033[1m{self}\033[0m")
-    def italic(self):                                                                  # Method to make the string italic in the terminal
+
+    def italic(self):
         return StylizedStr(f"\033[3m{self}\033[0m")
-    def underline(self):                                                               # Method to underline the string in the terminal
+
+    def underline(self):
         return StylizedStr(f"\033[4m{self}\033[0m")
-    def strikethrough(self):                                                           # Method to strike through the string in the terminal
+
+    def strikethrough(self):
         return StylizedStr(f"\033[9m{self}\033[0m")
 
 
-def clear_screen(): # Function to clear the terminal screen and move the cursor to the top-left corner
+def clear_screen():
     print("\033[2J\033[H", end="")
+
+
+__all__ = [
+    "ASCII_FONT",
+    "COLORS_TEXT",
+    "COLORS_BACKGROUND",
+    "TERMINAL_CODES",
+    "StylizedStr",
+    "clear_screen",
+]
