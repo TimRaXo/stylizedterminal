@@ -61,7 +61,7 @@ clear_screen()
 ```python
 from stylizedterminal import StylizedStr
 
-print(StylizedStr("HELLO").ascii_art())
+print(StylizedStr("HELLO").ascii_art()) # if you also want to make it something else for example a different color you will have to call the ascii_art() function first, else it will get confused and print the color code in the ascii.
 ```
 
 ## Development

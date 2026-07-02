@@ -177,5 +177,6 @@ __all__ = [
     "COLORS_BACKGROUND",
     "TERMINAL_CODES",
     "StylizedStr",
+    "move_cursor",
     "clear_screen",
 ]
