@@ -75,7 +75,7 @@ print(StylizedStr("HELLO").ascii_art()) # if you also want to make it something 
 If you want to work on the package locally:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/TimRaXo/stylizedterminal.git
 cd stylizedterminal
 python -m venv .venv
 source .venv/bin/activate
