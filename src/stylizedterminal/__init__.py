@@ -4,7 +4,6 @@ from .core import (
     COLORS_TEXT,
     TERMINAL_CODES,
     StylizedStr,
-    clear_screen,
 )
 
 __all__ = [

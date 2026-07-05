@@ -64,32 +64,6 @@ ASCII_FONT = {
     "^": ["  #  ", " # # ", "     ", "     ", "     "],
     "_": ["     ", "     ", "     ", "     ", "#####"],
     "`": [" #   ", "  #  ", "     ", "     ", "     "],
-    "a": ["     ", " ### ", "#   #", " ####", "#   #"],
-    "b": ["#    ", "#    ", "#### ", "#   #", "#### "],
-    "c": ["     ", " ### ", "#    ", "#    ", " ### "],
-    "d": ["    #", "    #", " ####", "#   #", " ####"],
-    "e": ["     ", " ### ", "#   #", "#####", " ### "],
-    "f": ["  ## ", " #   ", "#### ", " #   ", " #   "],
-    "g": ["     ", " ####", "#   #", " ####", "    #", "#### "],
-    "h": ["#    ", "#    ", "#### ", "#   #", "#   #"],
-    "i": ["  #  ", "     ", "  #  ", "  #  ", "  #  "],
-    "j": ["   # ", "     ", "   # ", "   # ", "#  # "],
-    "k": ["#    ", "#   #", "#### ", "#   #", "#   #"],
-    "l": [" #   ", " #   ", " #   ", " #   ", " ### "],
-    "m": ["     ", "# # #", "# # #", "# # #", "# # #"],
-    "n": ["     ", "#### ", "#   #", "#   #", "#   #"],
-    "o": ["     ", " ### ", "#   #", "#   #", " ### "],
-    "p": ["     ", "#### ", "#   #", "#### ", "#    "],
-    "q": ["     ", " ####", "#   #", " ####", "    #"],
-    "r": ["     ", "#### ", "#    ", "#    ", "#    "],
-    "s": ["     ", " ####", "#    ", " ####", "#### "],
-    "t": [" #   ", "#####", " #   ", " #   ", "  #  "],
-    "u": ["     ", "#   #", "#   #", "#   #", " ####"],
-    "v": ["     ", "#   #", "#   #", " # # ", "  #  "],
-    "w": ["     ", "#   #", "# # #", "## ##", "#   #"],
-    "x": ["     ", "#   #", " # # ", "#   #", "#   #"],
-    "y": ["     ", "#   #", " # # ", "  #  ", "  #  "],
-    "z": ["     ", "#####", "   # ", "  #  ", "#####"],
     "{": ["  ## ", " #   ", "##   ", " #   ", "  ## "],
     "|": ["  #  ", "  #  ", "  #  ", "  #  ", "  #  "],
     "}": [" ##  ", "   # ", "   ##", "   # ", " ##  "],
@@ -132,10 +106,24 @@ class StylizedStr(str):
     def color(self, color="reset"):
         color_code = COLORS_TEXT.get(color.lower(), COLORS_TEXT["reset"])
         return StylizedStr(f"{color_code}{self}{COLORS_TEXT['reset']}")
+    
+    def color_rgb(self, r, g, b):
+        r = max(0, min(255, int(r)))
+        g = max(0, min(255, int(g)))
+        b = max(0, min(255, int(b)))
+
+        return StylizedStr(f"\033[38;2;{r};{g};{b}m{self}\033[0m")
 
     def background_color(self, color="reset"):
         color_code = COLORS_BACKGROUND.get(color.lower(), COLORS_BACKGROUND["reset"])
         return StylizedStr(f"{color_code}{self}{COLORS_BACKGROUND['reset']}")
+
+    def background_color_rgb(self, r, g, b):
+        r = max(0, min(255, int(r)))
+        g = max(0, min(255, int(g)))
+        b = max(0, min(255, int(b)))
+
+        return StylizedStr(f"\033[48;2;{r};{g};{b}m{self}\033[0m")
 
     def move_cursor(self, direction, steps):
         direction_code = TERMINAL_CODES.get(direction.lower())
@@ -166,10 +154,8 @@ class StylizedStr(str):
     def strikethrough(self):
         return StylizedStr(f"\033[9m{self}\033[0m")
 
-
 def clear_screen():
     print("\033[2J\033[H", end="")
-
 
 __all__ = [
     "ASCII_FONT",

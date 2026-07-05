@@ -30,8 +30,7 @@ import stylizedterminal
 ```python
 from stylizedterminal import StylizedStr
 
-print(StylizedStr("Hello").color("red"))
-print(StylizedStr("Hello").color("green"))
+print(StylizedStr("Hello, World!").color("red"))
 ```
 
 ### Background colors
@@ -39,7 +38,15 @@ print(StylizedStr("Hello").color("green"))
 ```python
 from stylizedterminal import StylizedStr
 
-print(StylizedStr("Hello").background_color("blue"))
+print(StylizedStr("Hello, World!").background_color("blue"))
+```
+
+### You can also use RGB
+```python 
+from stylizedterminal import StylizedStr
+
+print(StylizedStr("Hello, World!").color_rgb(255, 255, 0))
+print(StylizedStr("Hello, World!").background_color_rgb(255, 255, 0))
 ```
 
 ### Text styles
@@ -47,10 +54,10 @@ print(StylizedStr("Hello").background_color("blue"))
 ```python
 from stylizedterminal import StylizedStr
 
-print(StylizedStr("Hello").bold())
-print(StylizedStr("Hello").italic())
-print(StylizedStr("Hello").underline())
-print(StylizedStr("Hello").strikethrough())
+print(StylizedStr("Hello, World!").bold())
+print(StylizedStr("Hello, World!").italic())
+print(StylizedStr("Hello, World!").underline())
+print(StylizedStr("Hello, World!").strikethrough())
 ```
 
 ### Cursor movement and screen clearing
@@ -58,7 +65,7 @@ print(StylizedStr("Hello").strikethrough())
 ```python
 from stylizedterminal import StylizedStr, clear_screen
 
-print(StylizedStr("Hello").move_cursor(r, 5)) # The first parameter is the direction, the second parameter is by how much.
+print(StylizedStr("Hello, World!").move_cursor(r, 5)) # The first parameter is the direction, the second parameter is how much you want to move the cursor.
 clear_screen()
 ```
 
@@ -67,7 +74,16 @@ clear_screen()
 ```python
 from stylizedterminal import StylizedStr
 
-print(StylizedStr("HELLO").ascii_art()) # if you also want to make it something else for example a different color you will have to call the ascii_art() function first, else it will get confused and print the color code in the ascii.
+print(StylizedStr("Hello, World!").ascii_art())
+```
+
+### Chaining
+You can chain multiple functions together like this:
+
+```python
+from stylizedstr import StylizedStr
+
+print(StylizedStr("Hello, World!").ascii_art().color("red")) # Make sure to call the ASCII function first if you want to chain ASCII with different styles.
 ```
 
 ## Development
