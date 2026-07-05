@@ -3,6 +3,7 @@ from .core import (
     COLORS_BACKGROUND,
     COLORS_TEXT,
     TERMINAL_CODES,
+    clear_screen,
     StylizedStr,
 )
 
